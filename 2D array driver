@@ -1,0 +1,70 @@
+//21335265, Mark Harrison
+public class ImageDriver {
+    public static void main(String[] args) {
+        int[][] grid1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] grid2 = new int[(int) (Math.random() * 10) + 1][(int) (Math.random() * 10) + 1];
+        for (int row = 0; row < grid2.length; row++) {
+            for (int column = 0; column < grid2[0].length; column++) {
+                grid2[row][column] = (int) (Math.random() * 10);
+            }
+        }//randomly generates array and then randomly populates array
+
+        int[][]grid3 = {{1}};
+        int[][]grid4 = {{-5},{-3},{(int) Math.PI}};
+        Image simpleGrid = new Image(grid1); //simple ordered 3x3
+        Image randomGrid = new Image(grid2); //randomly generated grid of random values, length and width
+        Image weirdGrid = new Image(grid3); //one internal array with one element
+        Image mathGrid = new Image(grid4); //testing negatives, Math.pi constant (cast as integer)
+        //creates two new Image Objects
+
+        //SimpleGrid Testing
+
+        System.out.println( "Original Grid: \n" + simpleGrid.toString() + "\n");
+        System.out.println("Flipped vertical:");
+        simpleGrid.flip(false); //flips vertically
+        System.out.println(" \n Flipped Horizontal: ");
+        simpleGrid.flip(true); //flips horizontally
+        System.out.println("\n Rotated anticlockwise: ");
+        simpleGrid.rotate(false); //rotate anticlockwise
+        System.out.println("\n Rotated clockwise ");
+        simpleGrid.rotate(true); //rotate clockwise
+        System.out.println("\n ========================================");
+
+
+        //RandomGrid Testing
+        System.out.println("Original Grid: \n" + randomGrid.toString() + "\n");
+        System.out.println("Flipped Vertical:");
+        randomGrid.flip(false); //flips vertically
+        System.out.println("\n Flipped Horizontal: ");
+        randomGrid.flip(true); //flips horizontally
+        System.out.println("\n Rotated anticlockwise:");
+        randomGrid.rotate(false); //rotate anticlockwise
+        System.out.println("\n Rotated clockwise:");
+        randomGrid.rotate(true); //rotate clockwise
+        System.out.println("\n =========================================");
+
+
+        //NullGrid Testing
+        System.out.println("Original Grid: \n" + weirdGrid.toString());
+        System.out.println("\nFlipped Vertical:");
+        weirdGrid.flip(false); //flips vertically
+        System.out.println("\nFlipped Horizontal:");
+        weirdGrid.flip(true); //flips horizontally
+        System.out.println("\nRotated Anticlockwise:");
+        weirdGrid.rotate(false); //rotate anticlockwise
+        System.out.println("\nRotated Clockwise");
+        weirdGrid.rotate(true); //rotate clockwise
+        System.out.println("\n ========================================= ");
+       //Math Grid
+        System.out.println(" \nOriginal Grid: \n" + mathGrid.toString());
+        System.out.println("\nFlipped Vertical:");
+        mathGrid.flip(false); //flips vertically
+        System.out.println("\nFlipped Horizontal:");
+        mathGrid.flip(true); //flips horizontally
+        System.out.println("\nRotated Anticlockwise:");
+        mathGrid.rotate(false); //rotate anticlockwise
+        System.out.println("\nRotated Clockwise");
+        mathGrid.rotate(true); //rotate clockwise
+
+    }
+}
