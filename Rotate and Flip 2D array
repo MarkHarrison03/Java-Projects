@@ -1,0 +1,83 @@
+//21335265, Mark Harrison
+import java.util.Arrays;
+
+public class Image {
+        private int[][] pixels;
+        private int width;
+        private int height;
+
+        public Image(int[][] pixels)
+        {
+            this.pixels = pixels;
+            this.height = pixels.length; //assigns height to the height of the array
+            this.width = pixels[0].length; //assigns width to the width of the array
+
+        } //constructor to create the dimensions of the 2d array based on width and height values
+
+        public String toString()
+        {
+            return Arrays.deepToString(pixels).replace("], ", "],\n");
+        }
+        //toString method turns the array into a string
+
+        public void flip(boolean horizontal)
+        {
+            if(horizontal) //horizontal flip, leftmost column becomes rightmost column etc
+            {
+                int[][] flippedHorizontal =  new int[height][width]; //initialize the flipped array
+                for(int i = 0; i < height; i++)
+                {
+                    for(int j = 0; j < width; j++)
+                    {
+                         flippedHorizontal[i][j] = pixels[i][(width - 1)-j]  ;
+                         //couldn't figure out arraycopy for columns
+                    } //nested for loops swap the column
+                }
+                            System.out.println(Arrays.deepToString(flippedHorizontal).replace("], ", "],\n")); //prints out the flipped array
+            } else
+            {
+                int[][] flippedVertical =  new int[height][width]; //initialize the flipped array
+                for(int i = 0; i < height; i++)
+                {
+                    System.arraycopy(pixels[i], 0, flippedVertical[(height - 1) - i], 0, pixels[0].length); //uses an array copy to flip the array vertically
+                    //use arraycopy to copy first row to bottom row, second row to second last row, etc
+                }
+                    System.out.println(Arrays.deepToString(flippedVertical).replace("], ", "],\n"));
+                //prints the array
+            }
+        }
+
+        public void rotate( boolean clockwise)
+        {
+            if(clockwise) //if statement for a clockwise rotation
+            {
+                int[][] clockwiseArray = new int[width][height];  //initialize clockwise array, swap width and height as array rotates
+                for(int rows = 0; rows < width; rows++)
+                {
+                    for(int columns = 0; columns < height; columns++)
+                    {
+                        clockwiseArray[rows][columns] = pixels[(height -1) - columns][rows]; //use nested for loop to make clockwise array
+                    }
+                }       System.out.println(Arrays.deepToString(clockwiseArray).replace("], ", "],\n")); //prints array
+
+            }else
+            {
+                int[][] anticlockwiseArray = new int[width][height]; //initialize array, switch width and height as it rotates
+                for(int rows = 0; rows < height; rows++)
+                {
+                    for(int columns = 0; columns < width; columns++)
+                    {
+                        anticlockwiseArray[(width -1 ) - columns][rows] = pixels[rows][columns]; //us nested for loop to rotate
+                    }
+
+                }   System.out.println((Arrays.deepToString(anticlockwiseArray).replace("], ", "],\n"))); //print array
+
+            }
+
+
+        }
+
+
+
+
+        }
